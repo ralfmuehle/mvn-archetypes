@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- http://maven.apache.org/archetype/maven-archetype-plugin/specification/archetype-metadata.html -->
+<!-- http://maven.apache.org/archetype/maven-archetype-plugin/index.html -->
+<archetype-descriptor
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+	xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<requiredProperties>
+		<requiredProperty key="site_name">
+			<!-- <defaultValue>default-value</defaultValue> -->
+		</requiredProperty>
+		<requiredProperty key="scm_url" />
+		<!-- <requiredProperty key="modulName"> <defaultValue>modul</defaultValue> 
+			</requiredProperty> -->
+	</requiredProperties>
+
+	<fileSets>
+		<fileSet filtered="true" encoding="UTF-8">
+			<directory>src/site</directory>
+		</fileSet>
+	</fileSets>
+
+	<modules>
+		<module id="${rootArtifactId}-modul" dir="__rootArtifactId__modul"
+			name="${rootArtifactId}-modul">
+			<fileSets>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>src/site</directory>
+				</fileSet>
+
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>src/main/resource</directory>
+				</fileSet>
+
+				<fileSet filtered="true" packaged="true">
+					<directory>src/main/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>src/test/resource</directory>
+				</fileSet>
+
+				<fileSet filtered="true" packaged="true">
+					<directory>src/test/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+	</modules>
+</archetype-descriptor>

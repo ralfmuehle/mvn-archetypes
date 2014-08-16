@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd" name="${project.name}">
+
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.3.0</version>
+  </skin>
+
+  <custom>
+    <fluidoSkin>
+      <topBarEnabled>true</topBarEnabled>
+      <sideBarEnabled>true</sideBarEnabled>
+      <topBarIcon>
+        <name>dzbw.de</name>
+        <alt>dzbw.de</alt>
+        <src>http://dzww.dzbw.de/servlet/PB/show/1016371/DZ_Logo%20orginal1.gif</src>
+        <href>http://dzww.dzbw.de</href>
+      </topBarIcon>
+    </fluidoSkin>
+  </custom>
+
+  <body>
+    <menu name="Overview">
+      <item name="Introduction" href="index.html" />
+      <item name="Getting Started" href="gettingstarted.html" />
+    </menu>
+
+    <menu name="Development">
+      <item name="Getting started" href="gettingstarted.html" />
+      <item name="Wiki" href="http://dzstuv005/dzwiki/index.php/${rootArtifactId}" />
+      <item name="Sonar" href="http://dzstuv035:9000/" />
+    </menu>
+
+    <menu ref="modules" /> 
+
+    <menu ref="reports" />
+  </body>
+</project>

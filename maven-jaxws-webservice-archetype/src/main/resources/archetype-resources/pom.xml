@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>parent_pom</artifactId>
+		<groupId>de.ralfmuehle</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>${version}</version>
+	<packaging>war</packaging>
+
+	<url>http://lisa/projects/${site_name}/</url>
+
+	<name>${artifactId}</name>
+
+	<properties>
+		<mavenVersion>2.2.1</mavenVersion>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jboss.home>D:\appServer\jboss\jboss-5.1.0.GA</jboss.home>
+		<jaxws-rt.version>2.2.8</jaxws-rt.version>
+		<finalname>simpleCalculator</finalname>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>jaxws-rt</artifactId>
+			<!-- <scope>provided</scope> -->
+			<version>${jaxws-rt.version}</version>
+			<exclusions>
+				<!-- <exclusion> -->
+				<!-- <artifactId>jaxb-impl</artifactId> -->
+				<!-- <groupId>com.sun.xml.bind</groupId> -->
+				<!-- </exclusion> -->
+				<exclusion>
+					<artifactId>junit</artifactId>
+					<groupId>junit</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>sun.spec</groupId>
+			<artifactId>javaee</artifactId>
+			<version>5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${finalname}</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<!-- https://jax-ws-commons.java.net/jaxws-maven-plugin/wsimport-mojo.html -->
+					<groupId>org.jvnet.jax-ws-commons</groupId>
+					<artifactId>jaxws-maven-plugin</artifactId>
+					<version>2.3</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+
+			<!-- <plugin> -->
+			<!-- <groupId>org.jvnet.jax-ws-commons</groupId> -->
+			<!-- <artifactId>jaxws-maven-plugin</artifactId> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <id>wsgen</id> -->
+			<!-- <goals> -->
+			<!-- <goal>wsgen</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- <dependencies> -->
+			<!-- <dependency> -->
+			<!-- <groupId>com.sun.xml.ws</groupId> -->
+			<!-- <artifactId>jaxws-rt</artifactId> -->
+			<!-- <version>${jaxws-rt.version}</version> -->
+			<!-- </dependency> -->
+			<!-- </dependencies> -->
+			<!-- <configuration> -->
+			<!-- <target>2.1</target> -->
+			<!-- <genWsdl>true</genWsdl> -->
+			<!-- <keep>true</keep> -->
+			<!-- <verbose>true</verbose> -->
+			<!-- </configuration> -->
+			<!-- </plugin> -->
+			<plugin>
+				<groupId>org.jvnet.jax-ws-commons</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>wsimport</id>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>com.sun.xml.ws</groupId>
+						<artifactId>jaxws-rt</artifactId>
+						<version>${jaxws-rt.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<target>2.1</target>
+					<wsdlDirectory>${basedir}/src/main/webapp/WEB-INF/wsdl</wsdlDirectory>
+					<keep>true</keep>
+					<verbose>true</verbose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-wsdl-source</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${basedir}/target/generated-sources/wsimport</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>deployToJBoss</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>jboss-maven-plugin</artifactId>
+						<version>1.5.0</version>
+						<executions>
+							<execution>
+								<id>redeploy</id>
+								<phase>install</phase>
+								<goals>
+									<goal>redeploy</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<jbossHome>${jboss.home}</jbossHome>
+							<serverName>default</serverName>
+							<hostName>localhost</hostName>
+							<port>8080</port>
+							<fileNames>
+								<fileName>${basedir}/target/${finalname}.war</fileName>
+							</fileNames>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
