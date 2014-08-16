@@ -8,7 +8,7 @@
   </parent>
 
   <artifactId>maven-simple-archetype</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>maven-archetype</packaging>
 
   <name>maven-simple-archetype</name>
@@ -16,6 +16,7 @@
   <scm>
     <connection>scm:git:http://github.com/ralfmuehle/mvn-archetypes.git</connection>
     <developerConnection>scm:git:https://github.com/ralfmuehle/mvn-archetypes.git</developerConnection>
+    <tag>mvn-archetypes-0.0.1</tag>
     <url>https://github.com/ralfmuehle/parent-pom.git</url>
   </scm>
 
