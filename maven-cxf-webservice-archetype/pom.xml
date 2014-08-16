@@ -1,41 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.dzbw.maven.archetype</groupId>
+  <parent>
+    <artifactId>parent-pom</artifactId>
+    <groupId>com.github.ralfmuehle</groupId>
+    <version>0.0.2</version>
+  </parent>
+
   <artifactId>maven-cxf-webservice-archetype</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <scm>
-    <connection>scm:svn:http://localhost/svn/mvnArchetype/trunk/maven-cxf-webservice-archetype</connection>
-    <developerConnection>scm:svn:http://localhost/svn/mvnArchetype/trunk/maven-cxf-webservice-archetype</developerConnection>
-    <url>http://localhost/svn/mvnArchetype/trunk/maven-cxf-webservice-archetype</url>
+    <connection>scm:git:http://github.com/ralfmuehle/mvn-archetypes.git</connection>
+    <developerConnection>scm:git:https://github.com/ralfmuehle/mvn-archetypes.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/ralfmuehle/parent-pom.git</url>
   </scm>
-
-  <ciManagement>
-    <system>Jenkins</system>
-    <url>http://homer:8081</url>
-  </ciManagement>
-
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>nexus_default</id>
-      <name>Nexus Releases</name>
-      <url>http://homer:8082/nexus/content/repositories/releases/</url>
-    </repository>
-    <snapshotRepository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>nexus_default</id>
-      <name>Nexus Releases</name>
-      <url>http://homer:8082/nexus/content/repositories/snapshots/</url>
-    </snapshotRepository>
-    <site>
-      <id>lisa</id>
-      <name>Maven Projektseite</name>
-      <url>dav:http://lisa:5005/web/projects/maven-simple-archetype/${project.version}/</url>
-    </site>
-  </distributionManagement>
 
   <properties>
     <archetype-version>2.2</archetype-version>
@@ -49,52 +30,5 @@
         <version>${archetype-version}</version>
       </extension>
     </extensions>
-
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-archetype-plugin</artifactId>
-          <version>${archetype-version}</version>
-        </plugin>
-        <plugin>
-          <groupId>com.google.code.sortpom</groupId>
-          <artifactId>maven-sortpom-plugin</artifactId>
-          <version>2.2</version>
-          <executions>
-            <execution>
-              <phase>verify</phase>
-              <goals>
-                <goal>sort</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <keepBlankLines>true</keepBlankLines>
-            <expandEmptyElements>false</expandEmptyElements>
-            <sort.sortDependencies>groupId,artifactId,scope</sort.sortDependencies>
-            <sort.sortProperties>true</sort.sortProperties>
-            <sort.createBackupFile>true</sort.createBackupFile>
-            <sort.expandEmptyElements>false</sort.expandEmptyElements>
-            <sort.keepBlankLines>false</sort.keepBlankLines>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.3.2</version>
-          <configuration>
-            <remoteTagging>false</remoteTagging>
-            <autoVersionSubmodules>true</autoVersionSubmodules>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>com.google.code.sortpom</groupId>
-        <artifactId>maven-sortpom-plugin</artifactId>
-      </plugin>
-    </plugins>
   </build>
 </project>
