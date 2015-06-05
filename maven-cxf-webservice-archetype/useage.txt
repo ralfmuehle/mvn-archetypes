@@ -1,0 +1,1 @@
+mvn archetype:generate -DgroupId=de.dzbw.bere -DartifactId=bere-webservice  -DarchetypeArtifactId=maven-cxf-webservice-archetype -DarchetypeGroupId=com.github.ralfmuehle
