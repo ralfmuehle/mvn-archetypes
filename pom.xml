@@ -3,13 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
   <!-- Hilfs-pom um alle archetypes auf einmal bauen zu können -->
   <parent>
-    <artifactId>parent-pom</artifactId>
+    <artifactId>templates</artifactId>
     <groupId>com.github.ralfmuehle</groupId>
-    <version>0.0.2</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>mvn-archetypes</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>mvn-archetypes</name>
 
