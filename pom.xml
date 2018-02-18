@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <!-- Hilfs-pom um alle archetypes auf einmal bauen zu können -->
   <parent>
-    <artifactId>templates</artifactId>
+    <artifactId>parent-pom</artifactId>
     <groupId>com.github.ralfmuehle</groupId>
     <version>0.0.9</version>
   </parent>
